@@ -11,7 +11,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 
 RUN apt install -y git 
 
-RUN apt-get install -y python3 python3-pip libgl1-mesa-glx libglib2.0-0 libglib2.0-dev 
+RUN apt-get install -y python3 python3-pip libgl1-mesa-glx libglib2.0-0 libglib2.0-dev unzip
 
 
 # Set up the NVIDIA CUDA repository
@@ -29,7 +29,11 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 # Set the working directory
 WORKDIR /app
 
+RUN git clone https://github.com/shravanganji/bdd100k-assignment.git
+
 # Copy the requirements file into the container
+RUN cd inference
+
 COPY requirements.txt .
 
 # Install Python dependencies
@@ -40,9 +44,14 @@ RUN pip install mmdet==2.24.0 mmcls==0.23.2
 RUN pip install opencv-python
 RUN pip install pydantic==1.10.12
 
+RUN python3 data_downloader.py
+RUN unzip data/bdd100k.zip data/
+RUN rm data/bdd100k.zip
+
 
 # Copy the rest of the application files into the container
 COPY . .
+
 #COPY data/ /app/data
 
 # Command to run your application
