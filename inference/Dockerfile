@@ -1,8 +1,6 @@
 # Use the official CUDA 11.3.1 base image
 FROM nvidia/cuda:11.3.1-base
 
-WORKDIR /app
-
 RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
 
 RUN apt-get update && apt-get install -y curl
@@ -27,12 +25,11 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 #RUN apt-get install -y python3 python3-pip libgl1-mesa-glx libglib2.0-0 libglib2.0-dev tzdata
 
 # Set the working directory
-WORKDIR /app
 
 RUN git clone https://github.com/shravanganji/bdd100k-assignment.git
 
 # Copy the requirements file into the container
-RUN cd inference
+WORKDIR "/inference"
 
 COPY requirements.txt .
 
