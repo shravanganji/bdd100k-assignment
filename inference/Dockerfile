@@ -36,7 +36,7 @@ WORKDIR /inference/app/bdd100k-assignment/inference
 
 RUN pip install gdown
 
-copy . .
+COPY . .
 RUN python3 data_downloader.py
 RUN unzip data/bdd100k.zip data/
 RUN rm data/bdd100k.zip
