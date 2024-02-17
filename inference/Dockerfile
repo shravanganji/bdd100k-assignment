@@ -31,6 +31,12 @@ RUN git clone https://github.com/shravanganji/bdd100k-assignment.git
 # Copy the requirements file into the container
 WORKDIR "/inference"
 
+RUN pip install gdown
+
+RUN python3 data_downloader.py
+RUN unzip data/bdd100k.zip data/
+RUN rm data/bdd100k.zip
+
 COPY requirements.txt .
 
 # Install Python dependencies
