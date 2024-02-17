@@ -40,6 +40,7 @@ RUN pip install mmcv-full==1.6.0 -f  https://download.openmmlab.com/mmcv/dist/cu
 RUN pip install mmdet==2.24.0 mmcls==0.23.2
 RUN pip install opencv-python
 RUN pip install pydantic==1.10.12
+RUN pip install gdown
 
 RUN python3 data_downloader.py
 RUN unzip data/bdd100k.zip data/
