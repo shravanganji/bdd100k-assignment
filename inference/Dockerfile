@@ -29,7 +29,7 @@ WORKDIR /inference
 
 RUN git clone https://github.com/shravanganji/bdd100k-assignment.git /inference/app
 
-WORKDIR /inference/app
+WORKDIR /inference/app/bdd100k-assignment/inference
 
 # Copy the requirements file into the container
 
