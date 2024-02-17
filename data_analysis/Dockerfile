@@ -26,7 +26,7 @@ RUN pip3 install gdown
 COPY . .
 
 RUN python data_downloader.py
-RUN unzip csv_data.zip .
+RUN unzip csv_data.zip
 RUN rm csv_data.zip
 
 
