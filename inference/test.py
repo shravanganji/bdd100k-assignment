@@ -106,7 +106,7 @@ def main() -> None:
         "results / save the results) with the argument '--format-only', "
         "'--show' or '--show-dir'"
     )
-    print(args.config)
+    print(args.format_dir)
     cfg = Config.fromfile(args.config)
     
     cfg.data.test["ann_file"]=args.val_data
@@ -204,6 +204,7 @@ def main() -> None:
         )
 
     rank, _ = get_dist_info()
+    print(rank)
     if rank == 0:
         if args.format_only:
             dataset.convert_format(outputs, args.format_dir)
