@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     software-properties-common \
-    git \
+    git \ 
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /data_analysis
@@ -25,6 +26,8 @@ RUN pip3 install gdown
 COPY . .
 
 RUN python data_downloader.py
+RUN unzip csv_data.zip .
+RUN rm csv_data.zip
 
 
 COPY . .
