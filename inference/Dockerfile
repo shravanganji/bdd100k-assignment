@@ -31,6 +31,8 @@ RUN git clone https://github.com/shravanganji/bdd100k-assignment.git /inference/
 
 WORKDIR /inference/app/bdd100k-assignment/inference
 
+RUN echo "Contents of /inference/app/bdd100k-assignment/inference:" && ls -al
+
 # Copy the requirements file into the container
 
 
