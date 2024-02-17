@@ -25,13 +25,14 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 #RUN apt-get install -y python3 python3-pip libgl1-mesa-glx libglib2.0-0 libglib2.0-dev tzdata
 
 # Set the working directory
+WORKDIR /inference
 
-RUN git clone https://github.com/shravanganji/bdd100k-assignment.git
+RUN git clone https://github.com/shravanganji/bdd100k-assignment.git /inference/app
 
-RUN ls
+WORKDIR /inference/app
 
 # Copy the requirements file into the container
-WORKDIR "/inference"
+
 
 RUN pip install gdown
 
