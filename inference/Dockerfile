@@ -28,6 +28,8 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 
 RUN git clone https://github.com/shravanganji/bdd100k-assignment.git
 
+RUN ls
+
 # Copy the requirements file into the container
 WORKDIR "/inference"
 
