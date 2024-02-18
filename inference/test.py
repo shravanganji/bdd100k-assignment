@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import json
 
 import datasets  # pylint: disable=unused-import
 import torch
@@ -204,9 +205,11 @@ def main() -> None:
         )
 
     rank, _ = get_dist_info()
-    print(rank)
     if rank == 0:
         if args.format_only:
+            print("Writing json file")
+            #with open(f"{args.fromat_dir}/results.json","w") as f:
+            	#json.write(outputs)	
             dataset.convert_format(outputs, args.format_dir)
 
 
