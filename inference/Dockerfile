@@ -29,21 +29,17 @@ WORKDIR /inference
 
 RUN git clone https://github.com/shravanganji/bdd100k-assignment.git /inference/app
 
-WORKDIR /inference/app/bdd100k-assignment/inference
-
-RUN echo "Contents of /inference/app/bdd100k-assignment/inference:" && ls -al
+WORKDIR /inference/app
 
 # Copy the requirements file into the container
 
 
 RUN pip install gdown
 
-COPY . .
+copy . .
 RUN python3 data_downloader.py
-RUN unzip data/bdd100k.zip data/
-RUN rm data/bdd100k.zip
-
-COPY requirements.txt .
+RUN unzip data/sample.zip
+RUN rm data/sample.zip
 
 # Install Python dependencies
 RUN pip install -r requirements.txt
@@ -55,11 +51,10 @@ RUN pip install pydantic==1.10.12
 
 
 # Copy the rest of the application files into the container
-COPY . .
+
 
 #COPY data/ /app/data
 
 # Command to run your application
 
-ENTRYPOINT ["python3", "test.py",  "configs/det/faster_rcnn_r101_fpn_3x_det_bdd100k.py","--format-only", "--format-dir", "results", "--val-data", "data/bdd100k/jsons/det_val_cocofmt.json","--image_folder", "data/bdd100k/images/100k/val" ]
-
+ENTRYPOINT ["python3", "test.py",  "configs/det/faster_rcnn_r101_fpn_3x_det_bdd100k.py","--format-only", "--format-dir", "/inference/app/data/bdd100k/jsons", "--val-data", "data/bdd100k/jsons/det_val_cocofmt.json","--image_folder", "data/bdd100k/images/100k/val" ]
