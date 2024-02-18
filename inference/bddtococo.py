@@ -4,7 +4,7 @@ import argparse
 from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description='bdd2coco')
-parser.add_argument('--bdd_dir', type=str, default='E:\\bdd100k')
+parser.add_argument('--bdd_dir', type=str)
 cfg = parser.parse_args()
 
 src_val_dir = os.path.join(cfg.bdd_dir, 'labels', 'bdd100k_labels_images_val.json')
