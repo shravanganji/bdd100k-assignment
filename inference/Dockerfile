@@ -48,6 +48,7 @@ RUN pip install mmcv-full==1.6.0 -f  https://download.openmmlab.com/mmcv/dist/cu
 RUN pip install mmdet==2.24.0 mmcls==0.23.2
 RUN pip install opencv-python
 RUN pip install pydantic==1.10.12
+RUN pip install plotly streamlit
 
 
 # Copy the rest of the application files into the container
@@ -56,5 +57,11 @@ RUN pip install pydantic==1.10.12
 #COPY data/ /app/data
 
 # Command to run your application
+EXPOSE 8502
 
-ENTRYPOINT ["python3", "test.py",  "configs/det/faster_rcnn_r101_fpn_3x_det_bdd100k.py","--format-only", "--format-dir", "/inference/app/data/bdd100k/jsons", "--val-data", "data/bdd100k/jsons/det_val_cocofmt.json","--image_folder", "data/bdd100k/images/100k/val" ]
+# Create a script to run both entrypoints sequentially
+RUN echo '#!/bin/bash\npython3 test.py configs/det/faster_rcnn_r101_fpn_3x_det_bdd100k.py --format-only --format-dir /inference/app/data/bdd100k/jsons --val-data data/bdd100k/jsons/det_val_cocofmt.json --image_folder data/bdd100k/images/100k/val\nstreamlit run app.py --server.port=8502 --server.address=0.0.0.0' > /inference/run.sh
+RUN chmod +x /inference/run.sh
+
+# Run the script as the entrypoint
+ENTRYPOINT ["/inference/run.sh"]
