@@ -22,10 +22,10 @@ If you want to build docker images from scratch for :
 Folder structure:
 
 bdd100k-assignment:
-   data_analysis
-   inference
-   retraining
-   Assignment_Documentation_Shravan.pdf
+   1. data_analysis - For data analysis purpose
+   2. inference - For running inference on pretrained model
+   3. retraining - For retraining detectron2 on dataset using FRCNN
+   4. Assignment_Documentation_Shravan.pdf
 
 
    
