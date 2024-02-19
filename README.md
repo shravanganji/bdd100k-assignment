@@ -5,11 +5,11 @@ Note : Make sure to install docker-nvidia
 
    1. for data analysis :
       1. docker pull docker pull shravanganji/analysis:v1.0
-      2. docker run -p 8501:8501 analysis:v1.0
+      2. docker run -p 8501:8501 shravanganji/analysis:v1.0
 
    2. For inference
       1. docker pull shravanganji/inference:v1.0
-      2. docker run –gpus all -p 8502:8502 inference:v1.0
+      2. docker run –gpus all -p 8502:8502 shravanganji/inference:v1.0
   
 If you want to build docker images from scratch for :
    1. Data analysis :
