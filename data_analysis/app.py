@@ -149,9 +149,9 @@ st.title('Object Detection EDA')
 # Sidebar for page selection
 st.sidebar.markdown("All the filters are independent of each other", unsafe_allow_html=True)
 
-page = st.sidebar.radio("Select Page", (' Data', 'Validation Data'))
+page = st.sidebar.radio("Select Page", ('Training Data', 'Validation Data'))
 
-if page == ' Training Data':
+if page == 'Training Data':
     st.markdown("""
     ##  Training Data
     In this section, we will analyze the  data for object detection.
@@ -303,7 +303,7 @@ if option == 'Histogram Chart':
     st.markdown(markdown_area_ratio)
     # Plot histogram for area_ratio with logarithmic scale
     fig3h = plot_histogram_log(
-        dataframe=train_data,
+        dataframe=data,
         title='Ratio of Object Area to Image Area for Object Detection Classes',
         x_label='Area Ratio',
         y_label='Number of Objects')
@@ -316,9 +316,9 @@ if option == 'Box PlotChart':
     # Display markdown text for Box Plot
     st.markdown(markdown_box_plot)
 
-    generate_box_plots(train_data, 'object_area')
-    generate_box_plots(train_data, 'area_ratio')
-    generate_box_plots(train_data, 'aspect_ratio')
+    generate_box_plots(data, 'object_area')
+    generate_box_plots(data, 'area_ratio')
+    generate_box_plots(data, 'aspect_ratio')
 
 
 if option == 'Scatter Chart':
