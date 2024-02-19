@@ -4,7 +4,7 @@ Dockers images
 Note : Make sure to install docker-nvidia
 
    1. for data analysis :
-      1. docker pull docker pull shravanganji/analysis:v1.0
+      1. docker pull shravanganji/analysis:v1.0
       2. docker run -p 8501:8501 shravanganji/analysis:v1.0
 
    2. For inference
